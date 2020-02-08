@@ -9,9 +9,9 @@ jobs:
       - checkout
       - run: yarn install
       - save_cache:
-        key: dependency-cache-{{ checksum "package-lock.json" }}
-        paths:
-          - node_modules
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
   test:
     docker:
       # specify the version you desire here
@@ -20,6 +20,8 @@ jobs:
     steps:
       # run tests!
       - run: yarn test
+      - store_artifacts:
+          path: test-results.xml
 
 workflows:
   version: 2
