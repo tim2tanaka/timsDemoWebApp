@@ -8,10 +8,7 @@ jobs:
     steps:
       - checkout
       - run: yarn install
-      - save_cache:
-        key: dependency-cache-{{ checksum "package-lock.json" }}
-        paths:
-          - ./node_modules
+
   test:
     docker:
       # specify the version you desire here
