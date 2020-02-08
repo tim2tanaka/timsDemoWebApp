@@ -15,6 +15,7 @@ jobs:
       - image: circleci/node:7.10
     steps:
       - checkout
+      - run: yarn install
       # run tests!
       - run: yarn test
       - store_artifacts:
