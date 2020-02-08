@@ -7,9 +7,9 @@ jobs:
       - image: circleci/node:7.10
     steps:
       - checkout
-      - run:
-        name: build
-        command: yarn install
+      - run: yarn install
+      - restore_cache:
+        key: dependency-cache-{{ checksum "package-lock.json" }}
       - save_cache:
         key: dependency-cache-{{ checksum "package-lock.json" }}
         paths:
@@ -22,10 +22,12 @@ jobs:
       - checkout
       - restore_cache:
         key: dependency-cache-{{ checksum "package-lock.json" }}
+      - save_cache:
+        key: dependency-cache-{{ checksum "package-lock.json" }}
+        paths:
+          - ./node_modules
       # run tests!
-      - run:
-        name: test
-        command: yarn test
+      - run: yarn test
       - store_artifacts:
           path: test-results.xml
 
