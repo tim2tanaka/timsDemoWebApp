@@ -27,7 +27,7 @@ workflows:
 
   pipeline_dev:
     jobs:
-      - build:
+      - build
       - test:
           requires:
             - build
