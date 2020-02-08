@@ -19,9 +19,8 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        key:
-          dependency-cache-{{ checksum "package-lock.json" }}
-          # run tests!
+        key: dependency-cache-{{ checksum "package-lock.json" }}
+      # run tests!
       - run: yarn test
       - store_artifacts:
           path: test-results.xml
