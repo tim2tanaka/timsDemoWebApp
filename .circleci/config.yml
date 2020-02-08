@@ -16,11 +16,11 @@ jobs:
       - run: yarn test
 
 workflows:
-    version:2
+  version: 2
 
-    pipeline_dev:
-        jobs:
+  pipeline_dev:
+    jobs:
+      - build
+      - test:
+          requires:
             - build
-            - test:
-                requires:
-                    - build
